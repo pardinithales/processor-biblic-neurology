@@ -104,7 +104,104 @@ RELIGIOUS_PROMPT = (
 
 Texto para reflexão: contextualiza o trecho, explica o que aconteceu antes, apresenta personagens e locais comparativamente. Texto completo: integra o conteúdo sem numerações ou citações. Reflexões após: cita trechos, explica verbos, ações e significados, aplicando à vida diária com perguntas profundas, percorrendo todo o texto.
 
-Garantir: fluidez, português brasileiro, fidelidade ao texto, reflexões por capítulo, sem enumeração."""
+Garantir: fluidez, português brasileiro, fidelidade ao texto, reflexões por capítulo, sem enumeração.
+
+
+<capitulos_or_salmos>
+
+Transformar o texto em formato narrativo, integralmente, MUITO FIEL, fluido, excelente para um audiobook. Remova elementos que atrapalhem o audiobook
+
+ 
+A ideia é que, sempre que possível, antes e a pós cada capítulo, fazer uma bela de uma explicação com reflexões bem do dia a dia, de no máximo 10 linhas, avançadas, sobre o trecho, levando a questionamentos da minha própria vida. Seja bem aprofundado e didático ao mesmo tempo, não saia do foco. Faça questão de explicar sobre os nomes citados, sobre o intuito das linhas do trecho, significado dos atos, comparação e paralelos com outros trechos bíblicos, sempre trazendo ao máximo para o dia a dia. 
+Novamente, seja bem aprofundado, percorra as partes mais importantes daquele trecho do início ao fim, não deixando escapar.
+iMPORTANTE A CONTEXTUALIZAÇÃO HISTÓRICA, OS SÍMBOLOS, A EXPLICAÇÃO DE CADA PERSONAGEM, PRINCIPALMENTE ANTES DO TEXTO, DE MODO QUE EU FIQUE BEM POR DENTRO DO CONTEXTO.
+MUITO EXPLICAR O QUE HAVIA ACABADO DE ACONTECER, PARA EU DAR SEGUIMENTO NA HISTÓRIA. 
+Aproveite para rever cada pessoa / agente histórico importante que vai ser mencionado. Lembre-se que na bíblia as relações são complexas, então preciso sempre de um remind mental sobre quem é cada um, de maneira a contextualizar o máximo. Isso também vale para cada cidade, local. Mas faça-o de maneira comparativa, sempre em relação a um objetivo maior, final, Cristo, sempre em comparação com trechos anteriores, por exemplo, e fielmente à bíblia católica. 
+
+
+# GARANTIR
+- Sem enumeração ou outros elementos, tex
+to fluido
+- Português-br
+- Seja fiel ao texto, se não souber não comente.
+- Os comentários devem ser POR CAPÍTULOS / SALMOS / TRECHOS DO EVANGELHO; não os agrupe
+
+
+# FORMATO DA RESPOSTA
+
+<formato_resposta>
+
+Capítulo (x) / Salmo (x) / Evangelho de (...) 
+
+Texto para reflexão:
+O texto que veremos agora é sobre (...). Alguns capítulos antes, tal e tal coisa havia acontecido.
+(...) era um homem, filho?
+Foque em (...)
+
+
+Texto completo do 
+[colocar o texto integral, sem omissões, exatamente como está na bíblia, sem pular nada, porém removendo números e citações que atrapalhem um audiobook]
+[finalizar quando terminar o capítulo / salmo / parte - não truncar] 
+[não usar hífen, bullets, nem nada] 
+
+Reflexões após o texto: 
+citar trechos do texto completo e explicando o que ele quer dizer; focar em cada verbo, ação, passagens, e explicar como elas podem ser aplicadas à vida cotidiana;
+ser bem reflexivo, confrontar passagens do texto completo e fazer perguntas inteligentes, profundas;
+percorra todo o texto completo em busca de passagens chaves; 
+
+</formato_resposta>
+
+Faça isso para cada parte/capítulo/seção/parte do evangelho
+
+____
+# Início do texto
+
+</capitulos_or_salmos>
+
+<catecismo>
+
+Otimização de Texto Religioso para Audiobook
+1. ESTRUTURA REQUERIDA:
+"Do parágrafo [identificar início] ao [identificar fim]:
+[TEXTO INTEGRAL - sem numerações, marcadores ou referências técnicas, sem citar (por exemplo (Ef 1,5) )]
+Comentários reflexivos a cada 5 parágrafos (8-10 linhas) que:
+- Exemplifiquem cada conceito, de maneira bem didática e prática, através de:
+* Situações cotidianas concretas
+* Experiências familiares comuns
+* Vivências profissionais
+* Momentos de desafio pessoal
+* Relacionamentos interpessoais, pessoais
+* Seja bem fiel ao conteúdo DO CATECISMO, sem extrapolar.
+- Aprofundem cada definição através de:
+* Analogias com experiências universais
+* Paralelos com a vida moderna
+* Aplicações práticas dos princípios
+* Reflexões sobre desafios contemporâneos
+* Meditações sobre a condição humana
+2. GARANTIAS:
+- Preservação integral do texto original
+- Fidelidade absoluta ao conteúdo
+- Reflexões baseadas exclusivamente no texto fornecido
+- Linguagem adequada para audiobook
+- Fluidez narrativa sem interrupções técnicas
+- EVITE CITAR OS PARAGRAFOS RELACIONADOS
+3. RESULTADO ESPERADO:
+Texto fluido e reflexivo que permita ao ouvinte:
+- Compreender conceitos abstratos através de experiências concretas
+- Reconhecer os princípios em seu cotidiano
+- Aprofundar seu entendimento através de exemplos práticos
+- Relacionar o conteúdo com sua vida diária
+- Meditar sobre os ensinamentos de forma pessoal"
+___
+# Início do Texto:
+
+
+
+</catecismo>
+
+
+
+"""
 )
 
 # Prompt para visão de textos religiosos
