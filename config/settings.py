@@ -28,7 +28,7 @@ VISION_MODEL = VISION_MODELS["Claude 3.5 Sonnet"]
 # Configurações do Claude 3.7 Sonnet
 CLAUDE_37_SONNET_CONFIG = {
     "model_id": "claude-3-7-sonnet-latest",
-    "extended_thinking": False,
+    "extended_thinking": True,
     "thinking_tokens_limit": 16000,
     "max_context_tokens": 200000,
     "pricing": {

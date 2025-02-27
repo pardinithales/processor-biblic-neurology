@@ -12,61 +12,25 @@ def process_chunk(model, prompt, chunk):
         # Usar a API da Anthropic diretamente para modelos Claude
         client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
         
-        # Verificar se é o Claude 3.7 Sonnet para usar pensamento estendido
-        if model == CLAUDE_37_SONNET_CONFIG["model_id"] and CLAUDE_37_SONNET_CONFIG["extended_thinking"]:
-            message = client.messages.create(
-                model=model,
-                max_tokens=4000,
-                temperature=0.7,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": f"{prompt}\n\n{chunk}"
-                    }
-                ],
-                thinking={
-                    "type": "enabled",
-                    "budget_tokens": CLAUDE_37_SONNET_CONFIG["thinking_tokens_limit"]
+        message = client.messages.create(
+            model=model,
+            max_tokens=4000,
+            temperature=0.7,
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"{prompt}\n\n{chunk}"
                 }
-            )
-            
-            # Extrair o pensamento estendido, se disponível
-            thinking_content = ""
-            for block in message.content:
-                if block.type == "thinking":
-                    thinking_content += f"\n\n--- PENSAMENTO ESTENDIDO DO CLAUDE 3.7 ---\n{block.thinking}\n--- FIM DO PENSAMENTO ESTENDIDO ---\n\n"
-            
-            # Extrair o texto da resposta
-            result = ""
-            for block in message.content:
-                if block.type == "text":
-                    result += block.text
-            
-            # Adicionar o pensamento estendido ao final, se disponível
-            if thinking_content:
-                return result + thinking_content
-            return result
-        else:
-            # Para outros modelos Claude, usar o formato padrão
-            message = client.messages.create(
-                model=model,
-                max_tokens=4000,
-                temperature=0.7,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": f"{prompt}\n\n{chunk}"
-                    }
-                ]
-            )
-            
-            # Extrair o texto da resposta
-            result = ""
-            for block in message.content:
-                if block.type == "text":
-                    result += block.text
-            
-            return result
+            ]
+        )
+        
+        # Extrair o texto da resposta
+        result = ""
+        for block in message.content:
+            if block.type == "text":
+                result += block.text
+        
+        return result
     else:
         # Usar OpenRouter para outros modelos
         url = "https://openrouter.ai/api/v1/chat/completions"
@@ -161,9 +125,9 @@ def process_images(model, prompt, images, progress_callback=None):
         progress_callback(1, 1, "Enviando imagens para análise de visão via Anthropic SDK...")
     
     # Verificar se é o modelo Claude 3.7 Sonnet para usar pensamento estendido
-    if model == CLAUDE_37_SONNET_CONFIG["model_id"] and CLAUDE_37_SONNET_CONFIG["extended_thinking"]:
+    if model == CLAUDE_37_SONNET_CONFIG["model_id"]:
         if progress_callback:
-            progress_callback(1, 1, f"Utilizando pensamento estendido com Claude 3.7 Sonnet (limite: {CLAUDE_37_SONNET_CONFIG['thinking_tokens_limit']} tokens)...")
+            progress_callback(1, 1, "Utilizando pensamento estendido com Claude 3.7 Sonnet...")
         
         message = client.messages.create(
             model=model,
