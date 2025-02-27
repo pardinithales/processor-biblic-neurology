@@ -193,7 +193,19 @@ if "processed_result" in st.session_state:
                     handler.setLevel(logging.INFO)
                     logger.handlers = [handler]
                     
-                    audio_bytes = generate_tts(texto, voice, model_tts)
+                    # Criar barra de progresso para geração de áudio
+                    audio_progress = st.progress(0)
+                    audio_status = st.empty()
+                    
+                    # Função de callback para atualizar o progresso da geração de áudio
+                    def audio_progress_callback(current_chunk, total_chunks, message):
+                        progress = current_chunk / total_chunks
+                        audio_progress.progress(progress)
+                        audio_status.write(message)
+                    
+                    # Modificar a função generate_tts para aceitar o callback
+                    audio_bytes = generate_tts(texto, voice, model_tts, callback=audio_progress_callback)
+                    
                     st.success("Áudio gerado com sucesso!")
                     st.audio(audio_bytes, format="audio/mp3")
                     st.download_button("Baixar Áudio", audio_bytes, file_name="audiobook.mp3")

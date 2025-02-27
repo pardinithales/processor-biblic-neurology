@@ -28,7 +28,7 @@ VISION_MODEL = VISION_MODELS["Claude 3.5 Sonnet"]
 # Configurações do Claude 3.7 Sonnet
 CLAUDE_37_SONNET_CONFIG = {
     "model_id": "claude-3-7-sonnet-latest",
-    "extended_thinking": True,
+    "extended_thinking": False,
     "thinking_tokens_limit": 16000,
     "max_context_tokens": 200000,
     "pricing": {
@@ -87,6 +87,23 @@ Keypoints: transcrevê-los integralmente, traduzidos, se houver.
 Parse especiais: p.Arg50* vira 'pê, Arg 50 asterisco'.
 
 Evitar: comparações infantis, termos em inglês, informações além do texto, expressões genéricas, meta-informações, referências, bullets, numerações."""
+
+"""
+MUITO IMPORTANTE EVITAR (DUPLA CHECAGEM)
+- frases muito genéricas como barreiras imunológicas representam desafios significativos para a terapia gênica
+- Hífens para itens
+hashtags
+- Eu gosto de texto contínuo, bem formatado, dividido em parágrafos.
+- Deixar fluido significa deixar o texto conectado, evitando ``` 2 pontos ```. EXEMPLO ```Eteplirsen (pulo do éxon 51): beneficia 13% dos pacientes``` é uma frase pouco contectada. Imagine alguém falando.
+- Não use bullets
+- Não use numerações
+- Não use hífens para itens
+- Não use hashtags
+- Não use negrito
+- Não use itálico
+
+"""
+
 )
 
 # Prompt para visão de neurologia
@@ -95,7 +112,7 @@ NEUROLOGY_VISION_PROMPT = (
 
 Evita aspectos visuais, metadados, interpretações pessoais, expressões como 'a imagem mostra'. Mantém precisão científica, detalha mecanismos moleculares/celulares, alterações patológicas e implicações clínicas.
 
-Para figuras: explica padrões microscópicos, processos moleculares e achados patológicos. Para tabelas: cita 'tabela (X)', transforma dados em narrativa, destaca padrões e relações."""
+Explique todo o conteúdo, em no mínimo 5 linhas, detalhadamente, dando uma aula."""
 )
 
 # Prompt para textos religiosos

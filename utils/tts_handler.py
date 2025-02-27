@@ -50,13 +50,13 @@ def generate_tts_chunk(text, voice="alloy", model="tts-1"):
         logger.error(f"Erro na API para chunk: {str(e)}")
         raise Exception(f"Erro na API para chunk: {str(e)}")
 
-def generate_tts(text, voice="alloy", model="tts-1", max_chunk_size=3000):
-    """Gera áudio a partir de texto, retornando apenas o primeiro chunk para teste."""
+def generate_tts(text, voice="sky", model="tts-1", max_chunk_size=3000, callback=None):
+    """Gera áudio a partir de texto, processando todos os chunks e concatenando-os."""
     if not text.strip():
         raise ValueError("Texto vazio fornecido para geração de áudio.")
     
     text = clean_text(text)
-    logger.info(f"Texto total após limpeza: '{text}' ({len(text)} caracteres)")
+    logger.info(f"Texto total após limpeza: '{text[:100]}...' ({len(text)} caracteres)")
     
     sentences = split_into_sentences(text)
     chunks = []
@@ -76,12 +76,39 @@ def generate_tts(text, voice="alloy", model="tts-1", max_chunk_size=3000):
     if not chunks:
         raise ValueError("Nenhum chunk válido gerado a partir do texto.")
     
-    # Processar apenas o primeiro chunk para teste
-    logger.info(f"Processando chunk 1/{len(chunks)} ({len(chunks[0])} caracteres)")
-    try:
-        audio_bytes = generate_tts_chunk(chunks[0], voice, model)
-        logger.info(f"Áudio final gerado (apenas primeiro chunk): {len(audio_bytes)} bytes.")
-        return audio_bytes
-    except Exception as e:
-        logger.error(f"Falha ao processar chunk 1/{len(chunks)}: {str(e)}")
-        raise Exception(f"Falha ao processar chunk 1/{len(chunks)}: {str(e)}")
+    logger.info(f"Texto dividido em {len(chunks)} chunks para processamento")
+    
+    # Processar todos os chunks e concatenar os resultados
+    all_audio_bytes = bytearray()
+    
+    for i, chunk in enumerate(chunks):
+        message = f"Processando chunk {i+1}/{len(chunks)} ({len(chunk)} caracteres)"
+        logger.info(message)
+        
+        # Chamar o callback se fornecido
+        if callback:
+            callback(i+1, len(chunks), message)
+        
+        try:
+            audio_bytes = generate_tts_chunk(chunk, voice, model)
+            all_audio_bytes.extend(audio_bytes)
+            
+            message = f"Chunk {i+1}/{len(chunks)} processado: {len(audio_bytes)} bytes"
+            logger.info(message)
+            
+            # Atualizar o callback com a mensagem de sucesso
+            if callback:
+                callback(i+1, len(chunks), message)
+                
+        except Exception as e:
+            error_message = f"Falha ao processar chunk {i+1}/{len(chunks)}: {str(e)}"
+            logger.error(error_message)
+            
+            # Atualizar o callback com a mensagem de erro
+            if callback:
+                callback(i+1, len(chunks), error_message)
+                
+            raise Exception(error_message)
+    
+    logger.info(f"Áudio final gerado (todos os chunks): {len(all_audio_bytes)} bytes.")
+    return bytes(all_audio_bytes)
