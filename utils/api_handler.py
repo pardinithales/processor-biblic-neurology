@@ -16,8 +16,8 @@ def process_chunk(model, prompt, chunk):
         if model == CLAUDE_37_SONNET_CONFIG["model_id"] and CLAUDE_37_SONNET_CONFIG["extended_thinking"]:
             message = client.messages.create(
                 model=model,
-                max_tokens=4000,
-                temperature=0.7,
+                max_tokens=1600,
+                temperature=1,
                 messages=[
                     {
                         "role": "user",
@@ -26,7 +26,7 @@ def process_chunk(model, prompt, chunk):
                 ],
                 thinking={
                     "type": "enabled",
-                    "budget_tokens": CLAUDE_37_SONNET_CONFIG["thinking_tokens_limit"]
+                    "budget_tokens": 1024
                 }
             )
             
@@ -50,7 +50,7 @@ def process_chunk(model, prompt, chunk):
             # Para outros modelos Claude, usar o formato padrão
             message = client.messages.create(
                 model=model,
-                max_tokens=4000,
+                max_tokens=1600,
                 temperature=0.7,
                 messages=[
                     {
@@ -167,8 +167,8 @@ def process_images(model, prompt, images, progress_callback=None):
         
         message = client.messages.create(
             model=model,
-            max_tokens=4000,
-            temperature=0.7,
+            max_tokens=1600,
+            temperature=1,
             messages=[
                 {
                     "role": "user",
@@ -177,7 +177,7 @@ def process_images(model, prompt, images, progress_callback=None):
             ],
             thinking={
                 "type": "enabled",
-                "budget_tokens": CLAUDE_37_SONNET_CONFIG["thinking_tokens_limit"]
+                "budget_tokens": 1024
             }
         )
         
@@ -203,7 +203,7 @@ def process_images(model, prompt, images, progress_callback=None):
         # Para outros modelos, usar o formato padrão
         message = client.messages.create(
             model=model,
-            max_tokens=1024,
+            max_tokens=1600,
             messages=[
                 {
                     "role": "user",
